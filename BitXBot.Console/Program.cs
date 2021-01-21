@@ -1,12 +1,10 @@
-﻿
-
-namespace BitXBit.Rss.Console
+﻿namespace BitXBot.Console
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Threading.Tasks;
 	using System.Linq;
 	using System.Reflection;
+	using System.Threading.Tasks;
 
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
@@ -15,25 +13,26 @@ namespace BitXBit.Rss.Console
 	using Discord.Commands;
 	using Discord.WebSocket;
 
-	using BitXBit.Rss.Console.Commands;
 	using Commands.Fun;
+	using System.IO;
 
 	public class Program
     {
-		private static string Token = "NDExMjM0MzY5NDY2NzkzOTk0.DZhpTg.uZI5oZyviNgetTTTQiWDDm8bB6M";
 		private CommandService _commands;
 	    private DiscordSocketClient _client;
 	    private IServiceProvider _services;
 		private static IConfiguration Configuration { get; set; }
+		private static string _discordToken;
 
 		// TODO: Finish setting up the configuration object.
 		private static void Main(string[] args)
 		{
 			Configuration = new ConfigurationBuilder()
 					.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-					.AddEnvironmentVariables()
 					.AddCommandLine(args)
 					.Build();
+
+			_discordToken = Configuration["DiscordToken"];
 
 			new Program().StartAsync().GetAwaiter().GetResult();
 		}
@@ -50,9 +49,10 @@ namespace BitXBit.Rss.Console
 
 		    await InstallCommandsAsync();
 
-		    _client.Log += Log;
-		    //_client.UserJoined += AnnounceJoinedUser;
-			await _client.LoginAsync(TokenType.Bot, Token);
+			_client.Log += Log;
+		    _client.UserJoined += AnnounceJoinedUser;
+		    _client.UserBanned += PwnUserAfterBan;
+			await _client.LoginAsync(TokenType.Bot, _discordToken);
 		    await _client.StartAsync();
 
 			await Task.Delay(-1);
@@ -100,6 +100,14 @@ namespace BitXBit.Rss.Console
 		    var channel = _client.GetChannel(743180167421362288) as SocketTextChannel; // Gets the channel to send the message in
 		    await channel.SendMessageAsync($"Hey {user.Mention},welcome to **{channel.Guild.Name}**! Thanks for joining the community!"); //Welcomes the new user
 		    await channel.SendMessageAsync(string.Empty, false, GetUserEmbed(user));
+		}
+
+	    public async Task PwnUserAfterBan(SocketUser user, SocketGuild guild)
+	    {
+		    // Find a way to remove the magic number here.
+		    var channel = _client.GetChannel(743180167421362288) as SocketTextChannel; // Gets the channel to send the message in
+			await channel.SendMessageAsync($"Hey {user.Mention}, You got super fucking banned from **{channel.Guild.Name}**! Thanks for leaving the community!"); //Welcomes the new user
+			await channel.SendFileAsync(@"C:\Users\Matthew\source\repos\BitXBot\bitbotSticker.png", "Eat shit, nerd!");
 		}
 
 	    private Embed GetUserEmbed(IUser user)

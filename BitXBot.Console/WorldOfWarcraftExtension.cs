@@ -1,10 +1,9 @@
 ﻿
 
-namespace BitXBit.Rss.Console
+namespace BitXBot.Console
 {
 	using System.Linq;
 	using System.Threading.Tasks;
-
 	using Discord;
 	using Discord.WebSocket;
 

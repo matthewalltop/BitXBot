@@ -1,4 +1,4 @@
-﻿namespace BitXBit.Rss.Console.Commands.Administration
+﻿namespace BitXBot.Console.Commands.Administration
 {
 	using System;
 	using System.Collections.Generic;
@@ -7,6 +7,7 @@
 	using System.Threading.Tasks;
 	using Discord;
 	using Discord.Commands;
+	using External;
 
 	public class ServerInfoCommand : ModuleBase<SocketCommandContext>
 	{ 

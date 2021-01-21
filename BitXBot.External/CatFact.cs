@@ -1,7 +1,8 @@
-﻿namespace BitXBit.Rss
+﻿namespace BitXBot.External
 {
 	using Newtonsoft.Json;
-    public class CatFact
+
+	public class CatFact
     {
 		[JsonProperty("fact")]
 	    public string Fact { get; set; }

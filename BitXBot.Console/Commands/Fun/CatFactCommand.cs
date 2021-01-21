@@ -1,7 +1,8 @@
-﻿namespace BitXBit.Rss.Console.Commands.Fun
+﻿namespace BitXBot.Console.Commands.Fun
 {
 	using System.Threading.Tasks;
 	using Discord.Commands;
+	using External;
 
 	public class CatFactCommand: ModuleBase<SocketCommandContext>
     {

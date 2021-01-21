@@ -1,8 +1,9 @@
-﻿namespace BitXBit.Rss.Console.Commands
+﻿namespace BitXBot.Console.Commands.Administration
 {
 	using System.ComponentModel;
 	using System.Threading.Tasks;
 	using Discord.Commands;
+	using External;
 
 	public class RssCommands: ModuleBase<SocketCommandContext>
 	{

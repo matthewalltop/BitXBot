@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "BitXBot.Console": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "environmentVariables": {
+        "PORT": "44325"
+      }
+    }
+  }
+}

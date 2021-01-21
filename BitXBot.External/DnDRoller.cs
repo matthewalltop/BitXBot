@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-namespace BitXBit.Rss
+﻿namespace BitXBot.External
 {
-    public class DnDRoller
+	using System;
+
+	public class DnDRoller
     {
 		private Random Random { get; set; }
 

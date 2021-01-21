@@ -1,9 +1,11 @@
 ﻿
-namespace BitXBit.Rss.Console.Commands
+namespace BitXBot.Console.Commands.Fun
 {
 	using System.Collections.Generic;
 	using System.Threading.Tasks;
 	using Discord.Commands;
+	using External;
+
 	public class DieRollerCommand : ModuleBase<SocketCommandContext>
 	{
 		[Command("d")]

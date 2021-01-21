@@ -1,4 +1,4 @@
-﻿namespace BitXBit.Rss.Console
+﻿namespace BitXBot.Console
 {
 	using System;
 	using System.Linq;

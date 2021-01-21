@@ -1,12 +1,11 @@
-﻿namespace BitXBit.Rss.Console.Commands
+﻿namespace BitXBot.Console.Commands.Administration
 {
 	using System;
 	using System.ComponentModel;
-	using System.Threading.Tasks;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using Discord.Commands;
 	using Discord.WebSocket;
-
 
 	public class ClearMessagesCommand: ModuleBase<SocketCommandContext>
 	{
@@ -14,6 +13,8 @@
 		[Description("Clears given number of messages from channel")]
 		public async Task ClearMessages(int messageCount)
 		{
+
+			// TODO: Apply this as a global command filter for the admin stuff, if possible.
 			var userWhoSentMessage = (SocketGuildUser) Context.Message.Author;
 
 			var userIsAdmin = userWhoSentMessage.Roles.Any(x =>

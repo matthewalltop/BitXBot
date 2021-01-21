@@ -1,4 +1,4 @@
-﻿namespace BitXBit.Rss.Console.Commands.Administration
+﻿namespace BitXBot.Console.Commands.Administration
 {
 	using System.ComponentModel;
 	using System.Threading.Tasks;

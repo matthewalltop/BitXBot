@@ -1,9 +1,8 @@
-﻿namespace BitXBit.Rss
+﻿namespace BitXBot.External
 {
 	using System;
 	using System.Net.Http;
 	using System.Threading.Tasks;
-
 	using Newtonsoft.Json;
 
 	public class ApiClient : IDisposable

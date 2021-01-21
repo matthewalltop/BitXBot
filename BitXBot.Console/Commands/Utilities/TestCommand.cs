@@ -1,4 +1,4 @@
-﻿namespace BitXBit.Rss.Console.Commands.Utilities
+﻿namespace BitXBot.Console.Commands.Utilities
 {
 	using System;
 	using System.Collections.Generic;
@@ -7,6 +7,7 @@
 	using System.Threading.Tasks;
 	using Discord;
 	using Discord.Commands;
+	using Discord.WebSocket;
 
 	public class TestCommand : ModuleBase<SocketCommandContext>
 	{
@@ -14,11 +15,24 @@
 		[Description("Shows server rules in channel.")]
 		public async Task Test()
 		{
+
+			var userWhoSentMessage = (SocketGuildUser)Context.Message.Author;
+
+			var userIsAdmin = userWhoSentMessage.Roles.Any(x =>
+				x.Name.Equals("Mods", StringComparison.InvariantCultureIgnoreCase) ||
+				x.Name.Equals("Hosts", StringComparison.InvariantCultureIgnoreCase));
+
+			//if (!userIsAdmin)
+			//{
+			//	await Context.Channel.SendMessageAsync(
+			//		$" {userWhoSentMessage.Mention} Sorry, scrub. You don't have permission to use this command.");
+			//	return;
+			//}
+
 			var user = Context.User;
 
-			var embed = GetUserEmbed(user);
-
-			await Context.Channel.SendMessageAsync(string.Empty, false, embed);
+			await Context.Channel.SendMessageAsync($"Hey {user.Mention}, You got super fucking banned from **{Context.Guild.Name}**! Thanks for leaving the community!");
+			await Context.Channel.SendFileAsync(@"Resources\bitbotSticker.png", "Eat shit, nerd!");
 		}
 
 		private Embed GetUserEmbed(IUser user)

@@ -1,4 +1,4 @@
-﻿namespace BitXBit.Rss
+﻿namespace BitXBot.External
 {
     public class ServerInfo
     {
