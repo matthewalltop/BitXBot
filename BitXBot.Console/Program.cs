@@ -96,15 +96,22 @@
 
 	    public async Task AnnounceJoinedUser(SocketGuildUser user) //Welcomes the new user
 	    {
-			// Find a way to remove the magic number here.
-		    var channel = _client.GetChannel(743180167421362288) as SocketTextChannel; // Gets the channel to send the message in
+		    var strChannel = Environment.GetEnvironmentVariable("ChannelId");
+
+		    if (!ulong.TryParse(strChannel, out var channnelId))
+			    throw new InvalidCastException($"Unable to parse {nameof(channnelId)} from string");
+		    
+		    var channel = _client.GetChannel(channnelId) as SocketTextChannel; // Gets the channel to send the message in
 		    await channel.SendMessageAsync($"Hey {user.Mention},welcome to **{channel.Guild.Name}**! Thanks for joining the community!"); //Welcomes the new user
 		    await channel.SendMessageAsync(string.Empty, false, GetUserEmbed(user));
 		}
 
 	    public async Task PwnUserAfterBan(SocketUser user, SocketGuild guild)
 	    {
-		    // Find a way to remove the magic number here.
+		    var strChannel = Environment.GetEnvironmentVariable("ChannelId");
+		    if (!ulong.TryParse(strChannel, out var channnelId))
+			    throw new InvalidCastException($"Unable to parse {nameof(channnelId)} from string");
+		    
 		    var channel = _client.GetChannel(743180167421362288) as SocketTextChannel; // Gets the channel to send the message in
 			await channel.SendMessageAsync($"Hey {user.Mention}, You got super fucking banned from **{channel.Guild.Name}**! Thanks for leaving the community!"); //Welcomes the new user
 			await channel.SendFileAsync(@"C:\Users\Matthew\source\repos\BitXBot\bitbotSticker.png", "Eat shit, nerd!");
@@ -112,8 +119,12 @@
 
 	    private Embed GetUserEmbed(IUser user)
 	    {
+		    var strGuild = Environment.GetEnvironmentVariable("ChannelId");
+		    if (!ulong.TryParse(strGuild, out var guildId))
+			    throw new InvalidCastException($"Unable to parse {nameof(guildId)} from string");
+		    
 		    // Find a way to remove the magic number here.
-			var guildInfo = _client.GetGuild(741733933439385690);
+			var guildInfo = _client.GetGuild(guildId);
 			var embedBuilder = new EmbedBuilder
 			{
 				Color = GetRandomColor(),

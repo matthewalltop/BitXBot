@@ -13,7 +13,6 @@
 		[Description("Clears given number of messages from channel")]
 		public async Task ClearMessages(int messageCount)
 		{
-
 			// TODO: Apply this as a global command filter for the admin stuff, if possible.
 			var userWhoSentMessage = (SocketGuildUser) Context.Message.Author;
 

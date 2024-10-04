@@ -22,17 +22,10 @@
 				x.Name.Equals("Mods", StringComparison.InvariantCultureIgnoreCase) ||
 				x.Name.Equals("Hosts", StringComparison.InvariantCultureIgnoreCase));
 
-			//if (!userIsAdmin)
-			//{
-			//	await Context.Channel.SendMessageAsync(
-			//		$" {userWhoSentMessage.Mention} Sorry, scrub. You don't have permission to use this command.");
-			//	return;
-			//}
-
 			var user = Context.User;
 
-			await Context.Channel.SendMessageAsync($"Hey {user.Mention}, You got super fucking banned from **{Context.Guild.Name}**! Thanks for leaving the community!");
-			await Context.Channel.SendFileAsync(@"Resources\bitbotSticker.png", "Eat shit, nerd!");
+			await Context.Channel.SendMessageAsync($"Hey {user.Mention}, You got super banned from **{Context.Guild.Name}**! Thanks for leaving the community!");
+			await Context.Channel.SendFileAsync(@"Resources\bitbotSticker.png", "Good Riddance");
 		}
 
 		private Embed GetUserEmbed(IUser user)
